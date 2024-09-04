@@ -1,4 +1,5 @@
-# Maintainer: Matti Hyttinen  <matti@manjaro.org>
+# Maintainer: Mark Wagie <mark at manjaro dot org>
+# Contributor: Matti Hyttinen  <matti@manjaro.org>
 
 pkgname=plymouth-theme-manjaro
 pkgver=2.2
@@ -13,7 +14,7 @@ install='plymouth.install'
 _commit=b8d9b1bf79849907283dac14b51b283c88caca94
 source=("git+https://gitlab.manjaro.org/plymouth-themes/plymouth-manjaro.git#commit=${_commit}"
         'https://gitlab.manjaro.org/plymouth-themes/plymouth-manjaro/-/merge_requests/2.patch')
-sha256sums=('SKIP'
+sha256sums=('74715d2cdbf83b0ca406596204ce843acc84bcfcf94a1e1eec8026b8d6428de6'
             '986207490717a29249e0dbfc540d313599d75210cf6bec36c5cbe105da1212c0')
 
 prepare() {
