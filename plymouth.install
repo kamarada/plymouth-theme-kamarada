@@ -1,6 +1,6 @@
 #Set theme name
 
-name="manjaro"
+name="kamarada"
 
 post_install() {
   echo 

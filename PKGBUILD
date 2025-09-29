@@ -1,31 +1,25 @@
-# Maintainer: Mark Wagie <mark at manjaro dot org>
+# Maintainer: Antonio Medeiros <linuxkamarada@gmail.com>
+# Contributor: Mark Wagie <mark at manjaro dot org>
 # Contributor: Matti Hyttinen  <matti@manjaro.org>
 
-pkgname=plymouth-theme-manjaro
-pkgver=2.2
+pkgname=plymouth-theme-kamarada
+pkgver=1.0
 pkgrel=1
-pkgdesc="Plymouth theme for Manjaro"
+pkgdesc="Plymouth theme for Kamarada"
 arch=('any')
-url="https://gitlab.manjaro.org/plymouth-themes/plymouth-manjaro"
+url="https://github.com/kamarada/plymouth-theme-kamarada"
 license=('GPL')
 depends=('plymouth')
-makedepends=('git')
+makedepends=('plymouth' 'sed')
 install='plymouth.install'
-_commit=b8d9b1bf79849907283dac14b51b283c88caca94
-source=("git+https://gitlab.manjaro.org/plymouth-themes/plymouth-manjaro.git#commit=${_commit}"
-        'https://gitlab.manjaro.org/plymouth-themes/plymouth-manjaro/-/merge_requests/2.patch')
-sha256sums=('74715d2cdbf83b0ca406596204ce843acc84bcfcf94a1e1eec8026b8d6428de6'
-            '986207490717a29249e0dbfc540d313599d75210cf6bec36c5cbe105da1212c0')
-
-prepare() {
-  cd "$srcdir/plymouth-manjaro"
-
-  # New branding
-  git apply -p1 < ../2.patch
-}
+source=('watermark.png')
+sha256sums=('25c68aaf803101d94f1d08ffb432d3c2072b8cad6a60da25b772fdd3bce4b7de')
 
 package() {
-  cd "$srcdir/plymouth-manjaro"
   install -d "$pkgdir/usr/share/plymouth/themes"
-  cp -r manjaro "$pkgdir/usr/share/plymouth/themes/"
+  cp -r "/usr/share/plymouth/themes/spinner" "$pkgdir/usr/share/plymouth/themes/kamarada"
+  rm "$pkgdir/usr/share/plymouth/themes/kamarada/"{spinner.plymouth,watermark.png}
+  install -Dm644 "watermark.png" "$pkgdir/usr/share/plymouth/themes/kamarada/"
+  cp "/usr/share/plymouth/themes/bgrt/bgrt.plymouth" "$pkgdir/usr/share/plymouth/themes/kamarada/kamarada.plymouth"
+  sed -i 's/spinner/kamarada/g' "$pkgdir/usr/share/plymouth/themes/kamarada/kamarada.plymouth"
 }
